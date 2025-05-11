@@ -2,6 +2,7 @@ package com.kitaplikmicroservices.book_service.service;
 
 
 import com.kitaplikmicroservices.book_service.dto.BookDto;
+import com.kitaplikmicroservices.book_service.dto.BookIdDto;
 import com.kitaplikmicroservices.book_service.model.Book;
 import com.kitaplikmicroservices.book_service.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,11 @@ public class BookService {
 
         }
         return bookDtoList;*/
+    }
+
+    public BookIdDto findByIsbn(String isbn){
+        return bookRepository.findBookByIsbn(isbn)
+                .map(book -> new BookIdDto(book.getId(),book.getIsbn()))
+                .orElseThrow(() -> new BookNotFoundException("Book could not found by isbn :" + isbn));
     }
 }

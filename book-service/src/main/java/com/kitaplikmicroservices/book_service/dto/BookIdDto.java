@@ -19,6 +19,11 @@ public class BookIdDto {
     public BookIdDto() {
     }
 
+    public BookIdDto(String id, String isbn) {
+        this.id = id;
+        this.isbn = isbn;
+    }
+
     public String getId() {
         return id;
     }
