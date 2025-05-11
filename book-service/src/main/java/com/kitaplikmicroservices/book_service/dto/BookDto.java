@@ -7,7 +7,7 @@ public class BookDto{
 
     private String id;
     private String title;
-    private String bookYear;
+    private int bookYear;
     private String author;
     private String pressName;
     private String isbn;
@@ -44,11 +44,11 @@ public class BookDto{
         this.title = title;
     }
 
-    public String getBookYear() {
+    public int getBookYear() {
         return bookYear;
     }
 
-    public void setBookYear(String bookYear) {
+    public void setBookYear(int bookYear) {
         this.bookYear = bookYear;
     }
 

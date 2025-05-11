@@ -1,10 +1,7 @@
 package com.kitaplikmicroservices.book_service.model;
 
-
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "books")
@@ -15,23 +12,27 @@ public class Book {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
+
     private String title;
-    private String bookYear;
+    private int bookYear;
     private String author;
     private String pressName;
     private String isbn;
 
+
     public Book() {
     }
 
-    public Book(String id, String title, String bookYear, String author, String pressName, String isbn) {
-        this.id = id;
+
+    public Book(String title, int bookYear, String author, String pressName, String isbn) {
         this.title = title;
         this.bookYear = bookYear;
         this.author = author;
         this.pressName = pressName;
         this.isbn = isbn;
     }
+
+    // Getter ve Setter'lar
 
     public String getId() {
         return id;
@@ -49,11 +50,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getBookYear() {
+    public int getBookYear() {
         return bookYear;
     }
 
-    public void setBookYear(String bookYear) {
+    public void setBookYear(int bookYear) {
         this.bookYear = bookYear;
     }
 
@@ -86,7 +87,7 @@ public class Book {
         return "Book{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", bookYear='" + bookYear + '\'' +
+                ", bookYear=" + bookYear +
                 ", author='" + author + '\'' +
                 ", pressName='" + pressName + '\'' +
                 ", isbn='" + isbn + '\'' +
