@@ -2,14 +2,18 @@ package com.kitaplikmicroservices.book_service.model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "books")
 public class Book {
 
     @Id
-    @GeneratedValue(generator = "UUID", strategy = GenerationType.UUID)
-
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
     private String title;
     private String bookYear;
