@@ -18,12 +18,9 @@ import java.util.logging.Logger;
 @RequestMapping("/v1/library")
 public class LibraryController {
 
-    Logger logger = (Logger) LoggerFactory.getLogger(LibraryController.class);
+
     private final LibraryService libraryService;
 
-
-    @Value("${library-service.book.count}")
-    private String count;
 
     public LibraryController(LibraryService libraryService) {
         this.libraryService = libraryService;
@@ -37,18 +34,22 @@ public class LibraryController {
 
     @PostMapping
     public ResponseEntity<LibraryDto> createLibrary() {
-        logger.info("Library created on port number "  );
+
 
         return ResponseEntity.ok(libraryService.createLibrary());
     }
 
 
 
+    @PutMapping
+    public ResponseEntity<Void> addToLibrary(@RequestBody AddBookRequest addBookRequest){
+        libraryService.addBookToLibrary(addBookRequest);
+        return ResponseEntity.ok().build();
 
-
-    @GetMapping("/count")
-    public ResponseEntity<String> getCount() {
-        return ResponseEntity.ok("Library count is" + count);
     }
+
+
+
+
 
 }
