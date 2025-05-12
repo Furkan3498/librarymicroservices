@@ -1,4 +1,4 @@
-package com.kitaplikmicroservices.library_service.controller;
+package com.kitaplikmicroservices.library_service.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;

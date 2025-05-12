@@ -1,6 +1,6 @@
 package com.kitaplikmicroservices.library_service.service;
 
-import com.kitaplikmicroservices.library_service.controller.Library;
+import com.kitaplikmicroservices.library_service.model.Library;
 import com.kitaplikmicroservices.library_service.dto.LibraryDto;
 import com.kitaplikmicroservices.library_service.exception.LibraryNotFoundException;
 import com.kitaplikmicroservices.library_service.repository.LibraryRepository;
@@ -21,5 +21,10 @@ public class LibraryService {
                 .orElseThrow(()-> new LibraryNotFoundException("Library could not found by Id" + id));
 
         return new LibraryDto(library.getId());
+    }
+
+    public LibraryDto createLibrary(){
+        Library newLibrary = libraryRepository.save(new Library());
+        return new LibraryDto(newLibrary.getId());
     }
 }
