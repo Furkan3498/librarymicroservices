@@ -12,6 +12,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+
 public class BookServiceApplication implements CommandLineRunner {
 
 	private final BookRepository bookRepository;
