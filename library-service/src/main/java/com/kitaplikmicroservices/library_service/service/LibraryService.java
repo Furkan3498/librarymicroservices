@@ -6,7 +6,6 @@ import com.kitaplikmicroservices.library_service.model.Library;
 import com.kitaplikmicroservices.library_service.dto.LibraryDto;
 import com.kitaplikmicroservices.library_service.exception.LibraryNotFoundException;
 import com.kitaplikmicroservices.library_service.repository.LibraryRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;

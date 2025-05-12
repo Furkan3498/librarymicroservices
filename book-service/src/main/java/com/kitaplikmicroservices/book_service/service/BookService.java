@@ -4,11 +4,9 @@ package com.kitaplikmicroservices.book_service.service;
 import com.kitaplikmicroservices.book_service.dto.BookDto;
 import com.kitaplikmicroservices.book_service.dto.BookIdDto;
 import com.kitaplikmicroservices.book_service.exception.BookNotFoundException;
-import com.kitaplikmicroservices.book_service.model.Book;
 import com.kitaplikmicroservices.book_service.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +24,7 @@ public class BookService {
 
       return bookRepository.findAll()
                 .stream()
-                .map(BookDto::bookDtos )
+                .map(BookDto::convert )
                 .collect(Collectors.toList());
 
 
@@ -51,6 +49,6 @@ public class BookService {
 
     public BookDto findBookDetailsById(String id){
         return bookRepository.findById(id)
-                .map(BookDto::bookDtos).orElseThrow(() -> new BookNotFoundException("Book could not found by id : " +id));
+                .map(BookDto::convert).orElseThrow(() -> new BookNotFoundException("Book could not found by id : " +id));
     }
 }
