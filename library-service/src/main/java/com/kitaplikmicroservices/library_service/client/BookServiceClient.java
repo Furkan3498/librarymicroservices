@@ -6,6 +6,7 @@ import com.kitaplikmicroservices.library_service.dto.BookIdDto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,10 @@ public interface BookServiceClient {
 
     Logger logger = LoggerFactory.getLogger(BookServiceClient.class);
 
-    @GetMapping
+    @GetMapping("/isbn/{isbn}")
     @CircuitBreaker(name = "getBookByIsbnCircuitBreaker" , fallbackMethod = "getBookFallback")
-      ResponseEntity<List<BookDto>> getAllBooks();
 
+    ResponseEntity<BookIdDto> getBookByIsbn(@PathVariable(value = "isbn") String isbn);
 
     //must be same name fallbackMethod
     //need same parameter and exception
@@ -30,13 +31,14 @@ public interface BookServiceClient {
         //else  error status 405 log.error
 
         logger.info("Book not found by isbn " + isbn + ", returning default BookDto object");
-        return ResponseEntity.ok(new BookIdDto("default "));
+        return ResponseEntity.ok(new BookIdDto("default-book","default-isbn"));
 
     }
 
-    @GetMapping("/isbn/{isbn}")
-      ResponseEntity<BookIdDto> getBookByIsbn(@PathVariable   String isbn);
 
     @GetMapping("/book/{id}")
     public ResponseEntity<BookDto> getBookById(@PathVariable  String id);
+
+    @GetMapping
+    ResponseEntity<List<BookDto>> getAllBooks();
 }
