@@ -3,6 +3,7 @@ package com.kitaplikmicroservices.library_service.client;
 
 import com.kitaplikmicroservices.library_service.dto.BookDto;
 import com.kitaplikmicroservices.library_service.dto.BookIdDto;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,6 +19,7 @@ public interface BookServiceClient {
     Logger logger = LoggerFactory.getLogger(BookServiceClient.class);
 
     @GetMapping
+    @CircuitBreaker(name = "getBookByIsbnCircuitBreaker" , fallbackMethod = "getBookFallback")
       ResponseEntity<List<BookDto>> getAllBooks();
 
     @GetMapping("/isbn/{isbn}")
