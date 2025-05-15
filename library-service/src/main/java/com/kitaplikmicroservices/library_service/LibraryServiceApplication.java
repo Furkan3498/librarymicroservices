@@ -16,7 +16,8 @@ public class LibraryServiceApplication {
 		SpringApplication.run(LibraryServiceApplication.class, args);
 	}
 
-
+/*
+			//Feign Client Error Hanling
 	@Bean
 	public ErrorDecoder errorDecoder(){
 		return new RetreiveMessageErrorDecoder();
@@ -25,5 +26,5 @@ public class LibraryServiceApplication {
 	@Bean
 	Logger.Level feignLoggerLevel(){
 		return Logger.Level.FULL;
-	}
+	}*/
 }
