@@ -33,7 +33,7 @@ public class LibraryController {
 
     @PostMapping
     public ResponseEntity<LibraryDto> createLibrary() {
-
+    logger.info("Library created on port number : " + environment.getProperty("local.server.port"));
 
         return ResponseEntity.ok(libraryService.createLibrary());
     }
