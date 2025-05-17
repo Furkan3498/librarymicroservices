@@ -15,7 +15,7 @@ public class LibraryController {
 
 
     private final LibraryService libraryService;
-
+    private final Environment environment;
 
 
     public LibraryController(LibraryService libraryService, Environment environment) {
