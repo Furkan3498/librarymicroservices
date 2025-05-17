@@ -10,6 +10,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RefreshScope
 @RequestMapping("/v1/library")
@@ -45,6 +47,10 @@ public class LibraryController {
         libraryService.addBookToLibrary(addBookRequest);
         return ResponseEntity.ok().build();
 
+    }
+    @GetMapping
+    public  ResponseEntity<List<String>>  getAllLibraries(){
+        return ResponseEntity.ok(libraryService.getAllLibraries());
     }
 
 

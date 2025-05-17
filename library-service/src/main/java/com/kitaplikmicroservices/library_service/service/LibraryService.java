@@ -8,6 +8,7 @@ import com.kitaplikmicroservices.library_service.exception.LibraryNotFoundExcept
 import com.kitaplikmicroservices.library_service.repository.LibraryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,5 +54,13 @@ public class LibraryService {
                 .add(book);
 
         libraryRepository.save(library);
+    }
+
+    public List<String> getAllLibraries() {
+
+        return libraryRepository.findAll()
+                .stream()
+                .map(library-> library.getId())
+                .collect(Collectors.toList());
     }
 }
