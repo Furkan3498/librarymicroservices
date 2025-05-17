@@ -4,6 +4,7 @@ import com.kitaplikmicroservices.library_service.dto.AddBookRequest;
 import com.kitaplikmicroservices.library_service.dto.LibraryDto;
 import com.kitaplikmicroservices.library_service.service.LibraryService;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +15,13 @@ public class LibraryController {
 
 
     private final LibraryService libraryService;
+    private final Environment environment;
 
 
-    public LibraryController(LibraryService libraryService) {
+    public LibraryController(LibraryService libraryService, Environment environment) {
         this.libraryService = libraryService;
 
+        this.environment = environment;
     }
 
     @GetMapping("{id}")
